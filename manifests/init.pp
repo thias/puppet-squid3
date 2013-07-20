@@ -45,19 +45,19 @@ class squid3 (
   $forwarded_for        = 'on'
 ) {
 
-  case $operatingsystem {
+  case $::operatingsystem {
     'Debian','Ubuntu':  {
-       $default_package_name = "squid"
-       $service_name = "squid3"
-     }
-     'Redhat','CentOS': {
-       $default_package_name = "squid3"
-       $service_name = "squid"
-     }
-     default: {
-       $default_package_name = "squid"
-       $service_name = "squid"
-     }
+      $default_package_name = 'squid'
+      $service_name = 'squid3'
+    }
+    'Redhat','CentOS': {
+      $default_package_name = 'squid3'
+      $service_name = 'squid'
+    }
+    default: {
+      $default_package_name = 'squid'
+      $service_name = 'squid'
+    }
   }
   # Ensure backwards compatibility for rpmname option
   $package_name = $rpmname ? {
@@ -68,8 +68,8 @@ class squid3 (
   package { $package_name: ensure => installed }
 
   service { $service_name:
-    enable    => true,
     ensure    => running,
+    enable    => true,
     restart   => "/sbin/service ${service_name} reload",
     hasstatus => true,
     require   => Package[$package_name],
