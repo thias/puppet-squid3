@@ -75,10 +75,17 @@ class squid3 (
     require   => Package[$package_name],
   }
 
-  file { '/etc/squid/squid.conf':
-    require => Package[$package_name],
-    notify  => Service[$service_name],
-    content => template('squid3/squid.conf.erb');
+  file {
+    '/etc/squid/squid.conf':
+      require => Package[$package_name],
+      notify  => Service[$service_name],
+      content => template('squid3/squid.conf.erb');
+
+    '/var/log/squid':
+      ensure => directory,
+      owner  => 'proxy',
+      group  => 'proxy',
+      mode   => '0770';
   }
 
 }
