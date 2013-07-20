@@ -22,7 +22,7 @@
 #     }
 #
 class squid3 (
-  # For RHEL5 this is 'squid3'
+  # This option is now depreciated'
   $rpmname              = 'squid',
   # Options are in the same order they appear in squid.conf
   $http_port            = [ '3128' ],
@@ -45,20 +45,40 @@ class squid3 (
   $forwarded_for        = 'on'
 ) {
 
-  package { $rpmname: ensure => installed }
+  case $operatingsystem {
+    'Debian','Ubuntu':  {
+       $default_package_name = "squid"
+       $service_name = "squid3"
+     }
+     'Redhat','CentOS': {
+       $default_package_name = "squid3"
+       $service_name = "squid"
+     }
+     default: {
+       $default_package_name = "squid"
+       $service_name = "squid"
+     }
+  }
+  # Ensure backwards compatibility for rpmname option
+  $package_name = $rpmname ? {
+    'nil'   => $default_package_name,
+    default => $rpmname,
+  }
 
-  service { 'squid':
+  package { $package_name: ensure => installed }
+
+  service { $service_name:
     enable    => true,
     ensure    => running,
-    restart   => '/sbin/service squid reload',
+    restart   => "/sbin/service ${service_name} reload",
     hasstatus => true,
-    require   => Package[$rpmname],
+    require   => Package[$package_name],
   }
 
   file { '/etc/squid/squid.conf':
-    require => Package[$rpmname],
-    notify  => Service['squid'],
-    content => template('squid3/squid.conf.erb'),
+    require => Package[$package_name],
+    notify  => Service[$service_name],
+    content => template('squid3/squid.conf.erb');
   }
 
 }
