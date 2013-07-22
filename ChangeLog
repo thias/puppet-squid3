@@ -1,3 +1,6 @@
+* Add params, start supporting Debian OS family.
+* Automatically pick the right package name on RHEL5.
+
 2013-05-24 - 0.1.1
 * Add ChangeLog and update Modulefile.
 * Add LICENSE file.

@@ -1,3 +1,5 @@
+# Class: squid3
+#
 # Squid 3.x proxy server.
 #
 # Sample Usage :
@@ -22,8 +24,6 @@
 #     }
 #
 class squid3 (
-  # For RHEL5 this is 'squid3'
-  $rpmname              = 'squid',
   # Options are in the same order they appear in squid.conf
   $http_port            = [ '3128' ],
   $acl                  = [],
@@ -43,21 +43,21 @@ class squid3 (
   $client_persistent_connections = 'on',
   $server_persistent_connections = 'on',
   $forwarded_for        = 'on'
-) {
+) inherits ::squid3::params {
 
-  package { $rpmname: ensure => installed }
+  package { $package_name: ensure => installed }
 
-  service { 'squid':
+  service { $service_name:
     enable    => true,
     ensure    => running,
-    restart   => '/sbin/service squid reload',
+    restart   => "/sbin/service ${service_name} reload",
     hasstatus => true,
-    require   => Package[$rpmname],
+    require   => Package[$package_name],
   }
 
   file { '/etc/squid/squid.conf':
-    require => Package[$rpmname],
-    notify  => Service['squid'],
+    require => Package[$package_name],
+    notify  => Service[$service_name],
     content => template('squid3/squid.conf.erb'),
   }
 
