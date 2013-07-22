@@ -50,12 +50,13 @@ class squid3 (
   service { $service_name:
     enable    => true,
     ensure    => running,
-    restart   => "/sbin/service ${service_name} reload",
+    restart   => "service ${service_name} reload",
+    path      => ['/sbin', '/usr/sbin'],
     hasstatus => true,
     require   => Package[$package_name],
   }
 
-  file { '/etc/squid/squid.conf':
+  file { $config_file:
     require => Package[$package_name],
     notify  => Service[$service_name],
     content => template('squid3/squid.conf.erb'),
