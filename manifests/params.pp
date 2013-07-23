@@ -10,14 +10,17 @@ class squid3::params {
         $package_name = 'squid'
       }
       $service_name = 'squid'
+      $config_file = '/etc/squid/squid.conf'
     }
     'Debian': {
-      $default_package_name = 'squid'
+      $package_name = 'squid3'
       $service_name = 'squid3'
+      $config_file = '/etc/squid3/squid.conf'
     }
     default: {
-      $default_package_name = 'squid'
+      $package_name = 'squid'
       $service_name = 'squid'
+      $config_file = '/etc/squid/squid.conf'
     }
   }
 
