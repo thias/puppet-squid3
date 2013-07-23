@@ -11,18 +11,24 @@ class squid3::params {
       }
       $service_name = 'squid'
       $config_file = '/etc/squid/squid.conf'
+      $log_directory = '/var/log/squid'
     }
     'Debian': {
-      $package_name = 'squid3'
-      $service_name = 'squid3'
-      $config_file = '/etc/squid3/squid.conf'
+      $package_name  = 'squid3'
+      $service_name  = 'squid3'
+      $config_file   = '/etc/squid3/squid.conf'
+      $log_directory = '/var/log/squid3'
     }
     default: {
       $package_name = 'squid'
       $service_name = 'squid'
       $config_file = '/etc/squid/squid.conf'
+      $log_directory = '/var/log/squid'
     }
   }
+  $access_log      = [ "${log_directory}/access.log squid" ]
+  $cache_log       = "${log_directory}/cache.log"
+  $cache_store_log = "${log_directory}/store.log"
 
 }
 
