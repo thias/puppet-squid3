@@ -36,9 +36,11 @@ class squid3 (
   $via                  = 'on',
   $ignore_expect_100    = 'off',
   $cache_mgr            = 'root',
+  $forwarded_for        = 'on',
   $client_persistent_connections = 'on',
   $server_persistent_connections = 'on',
-  $forwarded_for        = 'on'
+  $maximum_object_size           = '4096 KB',
+  $maximum_object_size_in_memory = '512 KB'
 ) inherits ::squid3::params {
 
   package { $package_name: ensure => installed }
