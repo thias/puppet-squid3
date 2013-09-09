@@ -1934,6 +1934,9 @@ cache_mem <%= @cache_mem %>
 #	enough to keep larger objects from hoarding cache_mem.
 #Default:
 # maximum_object_size_in_memory 512 KB
+<% if @maximum_object_size_in_memory != "512 KB" -%>
+maximum_object_size_in_memory <%= @maximum_object_size_in_memory %>
+<% end -%>
 
 #  TAG: memory_replacement_policy
 #	The memory replacement policy parameter determines which
@@ -2128,6 +2131,9 @@ cache_dir <%= line %>
 #	See replacement_policy below for a discussion of this policy.
 #Default:
 # maximum_object_size 4096 KB
+<% if @maximum_object_size != "4096 KB" -%>
+maximum_object_size <%= @maximum_object_size %>
+<% end -%>
 
 #  TAG: cache_swap_low	(percent, 0-100)
 #  TAG: cache_swap_high	(percent, 0-100)
