@@ -1,5 +1,7 @@
+2013-09-09 - 0.2.0
 * Add params, start supporting Debian OS family.
 * Automatically pick the right package name on RHEL5.
+* Added maximum_object_size{,_in_memory} parameters (Tristan Helmich).
 
 2013-05-24 - 0.1.1
 * Add ChangeLog and update Modulefile.
