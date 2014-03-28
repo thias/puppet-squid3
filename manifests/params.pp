@@ -9,8 +9,8 @@ class squid3::params {
       } else {
         $package_name = 'squid'
       }
-      $service_name = 'squid'
-      $config_file = '/etc/squid/squid.conf'
+      $service_name  = 'squid'
+      $config_file   = '/etc/squid/squid.conf'
       $log_directory = '/var/log/squid'
       $coredump_dir  = '/var/spool/squid'
     }
@@ -22,14 +22,17 @@ class squid3::params {
       $coredump_dir  = '/var/spool/squid3'
     }
     default: {
-      $package_name = 'squid'
-      $service_name = 'squid'
-      $config_file = '/etc/squid/squid.conf'
+      $package_name  = 'squid'
+      $service_name  = 'squid'
+      $config_file   = '/etc/squid/squid.conf'
       $log_directory = '/var/log/squid'
       $coredump_dir  = '/var/spool/squid'
     }
   }
+
   $access_log      = [ "${log_directory}/access.log squid" ]
   $cache_log       = "${log_directory}/cache.log"
   $cache_store_log = "${log_directory}/store.log"
+
 }
+

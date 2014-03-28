@@ -1,3 +1,5 @@
+* Fix coredump_dir on Debian/Ubuntu (#6, @jinnko).
+
 2013-09-09 - 0.2.0
 * Add params, start supporting Debian OS family.
 * Automatically pick the right package name on RHEL5.
