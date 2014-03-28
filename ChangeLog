@@ -1,3 +1,4 @@
+2014-03-28 - 0.2.1
 * Fix coredump_dir on Debian/Ubuntu (#6, @jinnko).
 
 2013-09-09 - 0.2.0
