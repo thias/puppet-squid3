@@ -11,25 +11,29 @@ configuration file options.
 
 Basic memory caching proxy server :
 
-    include squid3
+```puppet
+include squid3
+```
 
 Non-caching multi-homed proxy server :
 
-    class { 'squid3':
-      acl => [
-        'de myip 192.168.1.1',
-        'fr myip 192.168.1.2',
-        'office src 10.0.0.0/24',
-      ],
-      http_access => [
-        'allow office',
-      ],
-      cache => [ 'deny all' ],
-      via => 'off',
-      tcp_outgoing_address => [
-        '192.168.1.1 country_de',
-        '192.168.1.2 country_fr',
-      ],
-      server_persistent_connections => 'off',
-    }
+```puppet
+class { '::squid3':
+  acl => [
+    'de myip 192.168.1.1',
+    'fr myip 192.168.1.2',
+    'office src 10.0.0.0/24',
+  ],
+  http_access => [
+    'allow office',
+  ],
+  cache => [ 'deny all' ],
+  via => 'off',
+  tcp_outgoing_address => [
+    '192.168.1.1 country_de',
+    '192.168.1.2 country_fr',
+  ],
+  server_persistent_connections => 'off',
+}
+```
 
