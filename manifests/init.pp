@@ -43,20 +43,21 @@ class squid3 (
   $maximum_object_size_in_memory = '512 KB'
 ) inherits ::squid3::params {
 
-  package { $package_name: ensure => installed }
+  package { 'squid3_package': ensure => installed, name => $package_name }
 
-  service { $service_name:
+  service { 'squid3_service':
     enable    => true,
+    name      => $service_name,
     ensure    => running,
     restart   => "service ${service_name} reload",
     path      => ['/sbin', '/usr/sbin'],
     hasstatus => true,
-    require   => Package[$package_name],
+    require   => Package['squid3_package'],
   }
 
   file { $config_file:
-    require => Package[$package_name],
-    notify  => Service[$service_name],
+    require => Package['squid3_package'],
+    notify  => Service['squid3_service'],
     content => template('squid3/squid.conf.erb'),
   }
 
