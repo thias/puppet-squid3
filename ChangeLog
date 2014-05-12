@@ -1,3 +1,6 @@
+2014-05-12 - 0.2.2
+* Include short template and allow using custom templates (#5, @flypenguin).
+
 2014-03-28 - 0.2.1
 * Fix coredump_dir on Debian/Ubuntu (#6, @jinnko).
 
