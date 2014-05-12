@@ -40,24 +40,38 @@ class squid3 (
   $client_persistent_connections = 'on',
   $server_persistent_connections = 'on',
   $maximum_object_size           = '4096 KB',
-  $maximum_object_size_in_memory = '512 KB'
+  $maximum_object_size_in_memory = '512 KB',
+  $config_hash                   = {},
+  $template                      = 'long',
 ) inherits ::squid3::params {
 
-  package { $package_name: ensure => installed }
+  $use_template = $template ? {
+    'short' => 'squid3/squid.conf.short.erb',
+    'long'  => 'squid3/squid.conf.long.erb',
+    default => $template,
+  }
 
-  service { $service_name:
+  if ! empty($config_hash) and $use_template == 'long' {
+    fail('$config_hash does not (yet) work with the "long" template!')
+  }
+
+
+  package { 'squid3_package': ensure => installed, name => $package_name }
+
+  service { 'squid3_service':
     enable    => true,
+    name      => $service_name,
     ensure    => running,
     restart   => "service ${service_name} reload",
     path      => ['/sbin', '/usr/sbin'],
     hasstatus => true,
-    require   => Package[$package_name],
+    require   => Package['squid3_package'],
   }
 
   file { $config_file:
-    require => Package[$package_name],
-    notify  => Service[$service_name],
-    content => template('squid3/squid.conf.erb'),
+    require => Package['squid3_package'],
+    notify  => Service['squid3_service'],
+    content => template($use_template),
   }
 
 }
