@@ -34,7 +34,6 @@ class squid3 (
   $cache_dir            = [],
   $cache                = [],
   $via                  = 'on',
-  $ignore_expect_100    = 'off',
   $cache_mgr            = 'root',
   $forwarded_for        = 'on',
   $client_persistent_connections = 'on',
