@@ -1,5 +1,5 @@
 name 'thias-squid3'
-version '0.2.2'
+version '0.2.3'
 source 'git://github.com/thias/puppet-squid3'
 author 'Matthias Saou'
 license 'Apache 2.0'
