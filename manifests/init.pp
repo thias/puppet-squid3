@@ -42,6 +42,7 @@ class squid3 (
   $maximum_object_size           = '4096 KB',
   $maximum_object_size_in_memory = '512 KB',
   $config_hash                   = {},
+  $refresh_patterns              = [],
   $template                      = 'long',
 ) inherits ::squid3::params {
 

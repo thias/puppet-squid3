@@ -85,6 +85,9 @@ cache_log                      <%= @cache_log                      %>
 cache                          <%= line                            %>
 <% end -%>
 
+<% @refresh_patterns.each do |line| -%>
+refresh_pattern                <%= line                            %>
+<% end -%>
 refresh_pattern                ^ftp:              1440    20%    10080
 refresh_pattern                ^gopher:           1440     0%     1440
 refresh_pattern                -i (/cgi-bin/|\?)     0     0%        0
