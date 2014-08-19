@@ -64,6 +64,9 @@ cache_dir <%= line %>
 
 
 # general settings
+<% if @cache_peer %>
+  cache_peer  <%= @cache_peer  %>
+<% end %>
 hierarchy_stoplist             cgi-bin ?
 coredump_dir                   /var/spool/squid
 maximum_object_size_in_memory  <%= @maximum_object_size_in_memory  %>

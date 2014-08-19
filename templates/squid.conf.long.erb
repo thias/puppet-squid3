@@ -1794,6 +1794,10 @@ tcp_outgoing_address <%= line %>
 #	
 #Default:
 # none
+<% if @cache_peer %>
+  cache_peer  <%= @cache_peer  %>
+<% end %>
+
 
 #  TAG: cache_peer_domain
 #	Use to limit the domains for which a neighbor cache will be
