@@ -21,6 +21,7 @@ describe 'squid3' do
 
         it "should have long config file" do
           should contain_file('/etc/squid/squid.conf').with_content( /This is the default Squid configuration file/ )
+          should contain_file('/etc/squid/squid.conf').with_content( /acl manager proto cache_object/ )
         end
     end
 
@@ -32,6 +33,7 @@ describe 'squid3' do
 
         it "should have short config file" do
           should contain_file('/etc/squid/squid.conf').with_content( /MANAGED BY PUPPET/ )
+          should contain_file('/etc/squid/squid.conf').with_content( /acl manager proto cache_object/ )
         end
     end
 
@@ -57,6 +59,34 @@ describe 'squid3' do
         it "should have the proper config entries" do
           should contain_file('/etc/squid/squid.conf').with_content(/^whoops +boops$/)
         end
+    end
+
+    context 'Ubuntu - long template - with post 3.2 options deprecated' do
+      let(:facts) {{ :osfamily => 'Debian'}}
+      let(:params) {{
+        :template => 'long',
+        :use_deprecated_opts => false
+      }}
+
+      it "should remove deprecated entries" do
+        should contain_file('/etc/squid3/squid.conf').without_content(/^acl manager proto cache_object$/)
+        should contain_file('/etc/squid3/squid.conf').without_content(/^acl localhost src 127.0.0.1\/32 ::1$/)
+        should contain_file('/etc/squid3/squid.conf').without_content(/^acl to_localhost dst 127.0.0.0\/8 0.0.0.0\/32 ::1$/)
+      end
+    end
+
+    context 'Ubuntu - short template - with post 3.2 options deprecated' do
+      let(:facts) {{ :osfamily => 'Debian'}}
+      let(:params) {{
+          :template => 'short',
+          :use_deprecated_opts => false
+      }}
+
+      it "should remove deprecated entries" do
+        should contain_file('/etc/squid3/squid.conf').without_content(/^acl manager proto cache_object$/)
+        should contain_file('/etc/squid3/squid.conf').without_content(/^acl localhost src 127.0.0.1\/32 ::1$/)
+        should contain_file('/etc/squid3/squid.conf').without_content(/^acl to_localhost dst 127.0.0.0\/8 0.0.0.0\/32 ::1$/)
+      end
     end
 
 end
