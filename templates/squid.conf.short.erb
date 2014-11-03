@@ -54,6 +54,11 @@ icp_access <%= line %>
 http_port <%= line %>
 <% end -%>
 
+# user-defined https_port
+<% @https_port.each do |line| -%>
+https_port <%= line %>
+<% end -%>
+
 # user-defined tcp_outgoing_addresses
 <% @tcp_outgoing_address.each do |line| -%>
 tcp_outgoing_address <%= line %>

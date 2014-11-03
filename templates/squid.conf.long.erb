@@ -1188,6 +1188,9 @@ http_port <%= line %>
 #
 #Default:
 # none
+<% @https_port.each do |line| -%>
+https_port <%= line %>
+<% end -%>
 
 #  TAG: tcp_outgoing_tos
 #	Allows you to select a TOS/Diffserv value to mark outgoing
