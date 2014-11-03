@@ -117,4 +117,26 @@ describe 'squid3' do
       end
     end
 
+    context 'Ubuntu - with upstart support' do
+      let(:facts) {{ :osfamily => 'Debian'}}
+      let(:params) {{
+          :template   => 'short',
+      }}
+
+      it "it should not enable the service" do
+        should contain_service('squid3_service').with('enable' => false)
+      end
+    end
+
+    context 'RedHat - with SysV init support' do
+      let(:facts) { facts_hash }
+      let(:params){{
+          :template => 'short'
+      }}
+
+      it "it should enable the service" do
+        should contain_service('squid3_service').with('enable' => true)
+      end
+    end
+
 end
