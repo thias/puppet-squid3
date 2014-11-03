@@ -1188,8 +1188,10 @@ http_port <%= line %>
 #
 #Default:
 # none
+<% if @https_port -%>
 <% @https_port.each do |line| -%>
 https_port <%= line %>
+<% end -%>
 <% end -%>
 
 #  TAG: tcp_outgoing_tos

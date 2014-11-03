@@ -92,24 +92,28 @@ describe 'squid3' do
     context 'Ubuntu - long template - with https_port support' do
       let(:facts) {{ :osfamily => 'Debian'}}
       let(:params) {{
-          :template => 'long',
-          :https_port => ['443']
+          :template   => 'long',
+          :https_port => ['443'],
+          :http_port  => []
       }}
 
       it "set https_port with a valid port" do
         should contain_file('/etc/squid3/squid.conf').with_content(/^https_port +443$/)
+        should contain_file('/etc/squid3/squid.conf').without_content(/^http_port.*$/)
       end
     end
 
     context 'Ubuntu - short template - with https_port support' do
       let(:facts) {{ :osfamily => 'Debian'}}
       let(:params) {{
-          :template => 'short',
-          :https_port => ['443']
+          :template   => 'short',
+          :https_port => ['443'],
+          :http_port  => []
       }}
 
       it "set https_port with a valid port" do
         should contain_file('/etc/squid3/squid.conf').with_content(/^https_port +443$/)
+        should contain_file('/etc/squid3/squid.conf').without_content(/^http_port.*$/)
       end
     end
 

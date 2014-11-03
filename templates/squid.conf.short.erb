@@ -49,14 +49,18 @@ http_access deny all
 icp_access <%= line %>
 <% end -%>
 
+<% if @http_port -%>
 # user-defined http_port
 <% @http_port.each do |line| -%>
 http_port <%= line %>
 <% end -%>
+<% end -%>
 
+<% if @https_port -%>
 # user-defined https_port
 <% @https_port.each do |line| -%>
 https_port <%= line %>
+<% end -%>
 <% end -%>
 
 # user-defined tcp_outgoing_addresses
