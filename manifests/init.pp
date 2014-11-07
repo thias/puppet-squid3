@@ -46,6 +46,8 @@ class squid3 (
   $template                      = 'long',
 ) inherits ::squid3::params {
 
+  notify { "squid version: ${squid_version}": }
+
   $use_template = $template ? {
     'short' => 'squid3/squid.conf.short.erb',
     'long'  => 'squid3/squid.conf.long.erb',
