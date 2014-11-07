@@ -46,7 +46,6 @@ class squid3 (
   $template                      = 'long',
 ) inherits ::squid3::params {
 
-  notify { "squid version: ${squid_version}": }
   if versioncmp($squid_version, '3.2') < 0 {
     $old_squid_format = true
   }
