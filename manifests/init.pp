@@ -47,6 +47,9 @@ class squid3 (
 ) inherits ::squid3::params {
 
   notify { "squid version: ${squid_version}": }
+  if versioncmp($squid_version, '3.2') < 0) {
+    'old_squid_format' => true
+  }
 
   $use_template = $template ? {
     'short' => 'squid3/squid.conf.short.erb',
