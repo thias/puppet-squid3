@@ -46,6 +46,10 @@ class squid3 (
   $template                      = 'long',
 ) inherits ::squid3::params {
 
+  if versioncmp($squid_version, '3.2') < 0 {
+    $old_squid_format = true
+  }
+
   $use_template = $template ? {
     'short' => 'squid3/squid.conf.short.erb',
     'long'  => 'squid3/squid.conf.long.erb',
