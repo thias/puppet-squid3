@@ -4588,6 +4588,9 @@ server_persistent_connections <%= @server_persistent_connections %>
 #	See http://wiki.squid-cache.org/SquidFaq/SquidAcl for details.
 #Default:
 # none
+<% if @always_direct -%>
+    always_direct <%= @always_direct %>
+<% end -%>
 
 #  TAG: never_direct
 #	Usage: never_direct allow|deny [!]aclname ...

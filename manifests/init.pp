@@ -42,6 +42,7 @@ class squid3 (
   $maximum_object_size           = '4096 KB',
   $maximum_object_size_in_memory = '512 KB',
   $cache_peer                    = undef,
+  $always_direct                 = undef,
   $never_direct                  = undef,
   $nonhierarchical_direct        = undef,
   $prefer_direct                 = undef,
