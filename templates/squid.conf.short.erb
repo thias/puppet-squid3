@@ -76,7 +76,7 @@ cache_dir <%= line %>
 
 # general settings
 hierarchy_stoplist             cgi-bin ?
-coredump_dir                   /var/spool/squid
+coredump_dir                   <%= @coredump_dir %>
 maximum_object_size_in_memory  <%= @maximum_object_size_in_memory  %>
 maximum_object_size            <%= @maximum_object_size            %>
 ignore_expect_100              <%= @ignore_expect_100              %>
