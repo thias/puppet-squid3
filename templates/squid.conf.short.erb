@@ -29,6 +29,10 @@ http_access deny manager
 http_access deny !Safe_ports
 http_access deny CONNECT !SSL_ports
 
+<% @auth_param.each do |line| -%>
+auth_param <%= line %>
+<% end -%>
+
 # user-defined ACLs
 <% @acl.each do |line| -%>
 acl <%= line %>

@@ -26,6 +26,7 @@
 class squid3 (
   # Options are in the same order they appear in squid.conf
   $http_port            = [ '3128' ],
+  $auth_param           = [],
   $acl                  = [],
   $http_access          = [],
   $icp_access           = [],
