@@ -38,9 +38,11 @@ acl <%= line %>
 <% @http_access.each do |line| -%>
 http_access <%= line %>
 <% end -%>
+<% if not @auth_required -%>
 http_access allow localnet
 http_access allow localhost
 http_access deny all
+<% end -%>
 
 # user-defined icp_access
 <% @icp_access.each do |line| -%>
