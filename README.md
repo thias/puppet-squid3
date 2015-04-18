@@ -42,12 +42,12 @@ Password protected proxy (basic authentication):
   class { "::squid3":
     template      => "short",
     auth_required => true,
-    config_hash   => {
-      "auth_param basic program"     => "/usr/lib64/squid/ncsa_auth /etc/squid/squid.passwd",
-      "auth_param basic realm"       => "proxy",
-      "acl authenticated proxy_auth" => "REQUIRED",
-      "http_access allow"            => "authenticated",
-      "http_access deny"             => "all",
+    config        => {
+      "auth_param basic program /usr/lib64/squid/ncsa_auth /etc/squid/squid.passwd",
+      "auth_param basic realm proxy",
+      "acl authenticated proxy_auth REQUIRED",
+      "http_access allow authenticated",
+      "http_access deny all",
     }
   }
 
