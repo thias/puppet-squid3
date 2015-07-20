@@ -44,6 +44,7 @@ class squid3 (
   $config_hash                   = {},
   $refresh_patterns              = [],
   $template                      = 'long',
+  $logformat                     = undef,
 ) inherits ::squid3::params {
 
   $use_template = $template ? {

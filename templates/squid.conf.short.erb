@@ -74,6 +74,13 @@ client_persistent_connections  <%= @client_persistent_connections  %>
 server_persistent_connections  <%= @server_persistent_connections  %>
 forwarded_for                  <%= @forwarded_for                  %>
 via                            <%= @via %>
+
+<% if !logformat.nil? and logformat.class == Array  -%>
+<% @logformat.each do |line|  -%>
+logformat                      <%= line                            %>
+<% end -%>
+<% end -%>
+
 <% @access_log.each do |line|  -%>
 access_log                     <%= line                            %>
 <% end -%>
