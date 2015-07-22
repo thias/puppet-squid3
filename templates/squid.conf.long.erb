@@ -2289,6 +2289,12 @@ maximum_object_size <%= @maximum_object_size %>
 #Default:
 # none
 
+<% if !logformat.nil? and logformat.class == Array  -%>
+<% @logformat.each do |line|  -%>
+logformat                      <%= line                            %>
+<% end -%>
+<% end -%>
+
 #  TAG: access_log
 #	These files log client request activities. Has a line every HTTP or
 #	ICP request. The format is:

@@ -4,7 +4,7 @@ class squid3::params {
 
   case $::osfamily {
     'RedHat': {
-      if $::operatingsystemrelease < 6 {
+      if $::operatingsystemmajrelease < 6 {
         $package_name = 'squid3'
       } else {
         $package_name = 'squid'

@@ -10,7 +10,7 @@ describe 'squid3' do
 
     facts_hash = {
       :osfamily => 'RedHat',
-      :operatingsystemrelease => '6',
+      :operatingsystemmajrelease => '6',
     }
 
     context 'RedHat - long template' do
