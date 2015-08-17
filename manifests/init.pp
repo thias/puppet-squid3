@@ -46,6 +46,7 @@ class squid3 (
   $never_direct                  = undef,
   $nonhierarchical_direct        = undef,
   $prefer_direct                 = undef,
+  $max_filedesc                  = undef,
   $config_hash                   = {},
   $refresh_patterns              = [],
   $template                      = 'long',

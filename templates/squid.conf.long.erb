@@ -5565,4 +5565,6 @@ forwarded_for <%= @forwarded_for %>
 #	not all comm loops supports large values.
 #Default:
 # max_filedescriptors 0
-
+<% if @max_filedesc -%>
+    max_filedescriptors <%= @max_filedesc %>
+<% end -%>
