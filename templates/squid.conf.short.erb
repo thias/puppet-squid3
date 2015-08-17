@@ -114,3 +114,7 @@ refresh_pattern                .                     0    20%     4320
 <% @config_hash.each do |k,v| -%>
 <%= "%*s"%[-30,k] %> <%= v %>
 <% end -%>
+
+<% if @max_filedesc -%>
+  max_filedescriptors <%= @max_filedesc %>
+<% end -%>
