@@ -1794,6 +1794,10 @@ tcp_outgoing_address <%= line %>
 #	
 #Default:
 # none
+<% if @cache_peer %>
+  cache_peer  <%= @cache_peer  %>
+<% end %>
+
 
 #  TAG: cache_peer_domain
 #	Use to limit the domains for which a neighbor cache will be
@@ -4521,6 +4525,9 @@ server_persistent_connections <%= @server_persistent_connections %>
 #	this directive.
 #Default:
 # nonhierarchical_direct on
+<% if @nonhierarchical_direct -%>
+    nonhierarchical_direct <%= @nonhierarchical_direct %>
+<% end -%>
 
 #  TAG: prefer_direct
 #	Normally Squid tries to use parents for most requests. If you for some
@@ -4536,6 +4543,9 @@ server_persistent_connections <%= @server_persistent_connections %>
 #	acts on cacheable requests.
 #Default:
 # prefer_direct off
+<% if @prefer_direct -%>
+    prefer_direct <%= @prefer_direct %>
+<% end -%>
 
 #  TAG: always_direct
 #	Usage: always_direct allow|deny [!]aclname ...
@@ -4578,6 +4588,9 @@ server_persistent_connections <%= @server_persistent_connections %>
 #	See http://wiki.squid-cache.org/SquidFaq/SquidAcl for details.
 #Default:
 # none
+<% if @always_direct -%>
+    always_direct <%= @always_direct %>
+<% end -%>
 
 #  TAG: never_direct
 #	Usage: never_direct allow|deny [!]aclname ...
@@ -4607,6 +4620,10 @@ server_persistent_connections <%= @server_persistent_connections %>
 #	See http://wiki.squid-cache.org/SquidFaq/SquidAcl for details.
 #Default:
 # none
+<% if @never_direct -%>
+    never_direct <%= @never_direct %>
+<% end -%>
+
 
 # ADVANCED NETWORKING OPTIONS
 # -----------------------------------------------------------------------------
@@ -5548,4 +5565,6 @@ forwarded_for <%= @forwarded_for %>
 #	not all comm loops supports large values.
 #Default:
 # max_filedescriptors 0
-
+<% if @max_filedesc -%>
+    max_filedescriptors <%= @max_filedesc %>
+<% end -%>
