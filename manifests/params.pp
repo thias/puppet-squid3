@@ -9,24 +9,26 @@ class squid3::params {
       } else {
         $package_name = 'squid'
       }
-      $service_name  = 'squid'
-      $config_file   = '/etc/squid/squid.conf'
-      $log_directory = '/var/log/squid'
-      $coredump_dir  = '/var/spool/squid'
+      $service_name   = 'squid'
+      $service_enable = true
+      $config_file    = '/etc/squid/squid.conf'
+      $log_directory  = '/var/log/squid'
+      $coredump_dir   = '/var/spool/squid'
     }
     'Debian', 'Ubuntu': {
-      $package_name  = 'squid3'
-      $service_name  = 'squid3'
-      $config_file   = '/etc/squid3/squid.conf'
-      $log_directory = '/var/log/squid3'
-      $coredump_dir  = '/var/spool/squid3'
+      $package_name   = 'squid3'
+      $service_name   = 'squid3'
+      $service_enable = false
+      $config_file    = '/etc/squid3/squid.conf'
+      $log_directory  = '/var/log/squid3'
+      $coredump_dir   = '/var/spool/squid3'
     }
     default: {
-      $package_name  = 'squid'
-      $service_name  = 'squid'
-      $config_file   = '/etc/squid/squid.conf'
-      $log_directory = '/var/log/squid'
-      $coredump_dir  = '/var/spool/squid'
+      $package_name   = 'squid'
+      $service_name   = 'squid'
+      $config_file    = '/etc/squid/squid.conf'
+      $log_directory  = '/var/log/squid'
+      $coredump_dir   = '/var/spool/squid'
     }
   }
 

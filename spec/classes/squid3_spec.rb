@@ -89,4 +89,54 @@ describe 'squid3' do
       end
     end
 
+    context 'Ubuntu - long template - with https_port support' do
+      let(:facts) {{ :osfamily => 'Debian'}}
+      let(:params) {{
+          :template   => 'long',
+          :https_port => ['443'],
+          :http_port  => []
+      }}
+
+      it "set https_port with a valid port" do
+        should contain_file('/etc/squid3/squid.conf').with_content(/^https_port +443$/)
+        should contain_file('/etc/squid3/squid.conf').without_content(/^http_port.*$/)
+      end
+    end
+
+    context 'Ubuntu - short template - with https_port support' do
+      let(:facts) {{ :osfamily => 'Debian'}}
+      let(:params) {{
+          :template   => 'short',
+          :https_port => ['443'],
+          :http_port  => []
+      }}
+
+      it "set https_port with a valid port" do
+        should contain_file('/etc/squid3/squid.conf').with_content(/^https_port +443$/)
+        should contain_file('/etc/squid3/squid.conf').without_content(/^http_port.*$/)
+      end
+    end
+
+    context 'Ubuntu - with upstart support' do
+      let(:facts) {{ :osfamily => 'Debian'}}
+      let(:params) {{
+          :template   => 'short',
+      }}
+
+      it "it should not enable the service" do
+        should contain_service('squid3_service').with('enable' => false)
+      end
+    end
+
+    context 'RedHat - with SysV init support' do
+      let(:facts) { facts_hash }
+      let(:params){{
+          :template => 'short'
+      }}
+
+      it "it should enable the service" do
+        should contain_service('squid3_service').with('enable' => true)
+      end
+    end
+
 end
