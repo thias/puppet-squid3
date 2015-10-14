@@ -37,3 +37,13 @@ class { '::squid3':
 }
 ```
 
+## Caveats
+
+Upgrading Squid3 from version 3.2 to 3.3 breaks the configuration file to fix :
+
+```puppet
+class { '::squid3':
+  use_deprecated_opts => false
+}
+```
+
