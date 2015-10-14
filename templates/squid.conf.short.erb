@@ -40,7 +40,9 @@ acl <%= line %>
 <% @http_access.each do |line| -%>
 http_access <%= line %>
 <% end -%>
+<% if @http_access.empty? -%>
 http_access allow localnet
+<% end -%>
 http_access allow localhost
 http_access deny all
 
