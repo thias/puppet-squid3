@@ -44,6 +44,7 @@ class squid3 (
   $config_hash                   = {},
   $refresh_patterns              = [],
   $template                      = 'long',
+  $version                       = 'installed'
 ) inherits ::squid3::params {
 
   $use_template = $template ? {
@@ -57,7 +58,7 @@ class squid3 (
   }
 
 
-  package { 'squid3_package': ensure => installed, name => $package_name }
+  package { 'squid3_package': ensure => $version, name => $package_name }
 
   service { 'squid3_service':
     enable    => true,
