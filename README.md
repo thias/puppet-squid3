@@ -20,8 +20,8 @@ Non-caching multi-homed proxy server :
 ```puppet
 class { '::squid3':
   acl => [
-    'de myip 192.168.1.1',
-    'fr myip 192.168.1.2',
+    'country_de myip 192.168.1.1',
+    'country_fr myip 192.168.1.2',
     'office src 10.0.0.0/24',
   ],
   http_access => [
