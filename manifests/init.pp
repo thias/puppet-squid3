@@ -6,6 +6,8 @@ class squid3 (
   $http_port                     = [ '3128' ],
   $https_port                    = [],
   $acl                           = [],
+  $ssl_ports                     = [ '443' ],
+  $safe_ports                    = [ '80', '21', '443', '70', '210', '1025-65535', '280', '488', '591', '777', ],
   $http_access                   = [],
   $icp_access                    = [],
   $tcp_outgoing_address          = [],
