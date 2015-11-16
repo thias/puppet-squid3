@@ -101,6 +101,6 @@ refresh_pattern                .                     0    20%     4320
 
 
 # user-defined configuration settings from config_hash
-<% @config_hash.each do |k,v| -%>
+<% @config_hash.sort_by {|k,v| k}.each do |k,v| -%>
 <%= "%*s"%[-30,k] %> <%= v %>
 <% end -%>

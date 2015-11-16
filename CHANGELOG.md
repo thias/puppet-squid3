@@ -8,6 +8,7 @@
 * Fix operatingsystem comparison for RHEL < 6 (#27, @pecastro).
 * Add ssl_ports and safe_ports array parameters (#30, @tinnightcap).
 * Add validate_cmd for the configuration file (#31, @tinnightcap).
+* Sort $config_hash to avoid order change in the configuration file.
 
 #### 2014-07-15 - 0.2.3
 * Add refresh_patterns config option (#7, @adamgraves85).
