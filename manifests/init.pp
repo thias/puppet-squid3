@@ -58,9 +58,10 @@ class squid3 (
   }
 
   file { $config_file:
-    require => Package['squid3_package'],
-    notify  => Service['squid3_service'],
-    content => template($use_template),
+    require      => Package['squid3_package'],
+    notify       => Service['squid3_service'],
+    content      => template($use_template),
+    validate_cmd => "/usr/sbin/${service_name} -k parse -f %",
   }
 
 }
