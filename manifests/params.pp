@@ -26,7 +26,7 @@ class squid3::params {
     'FreeBSD': {
       $package_name   = 'squid'
       $service_name   = 'squid'
-      $service_enable = true,
+      $service_enable = true
       $config_file    = '/usr/local/etc/squid/squid.conf'
       $log_directory  = '/var/log/squid'
       $coredump_dir   = '/var/spool/squid'
@@ -34,7 +34,7 @@ class squid3::params {
     default: {
       $package_name   = 'squid'
       $service_name   = 'squid'
-      $service_enable = true,
+      $service_enable = true
       $config_file    = '/etc/squid/squid.conf'
       $log_directory  = '/var/log/squid'
       $coredump_dir   = '/var/spool/squid'
