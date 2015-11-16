@@ -50,7 +50,7 @@ class squid3 (
     enable    => $service_enable,
     name      => $service_name,
     restart   => "service ${service_name} reload",
-    path      => ['/sbin', '/usr/sbin'],
+    path      => [ '/sbin', '/usr/sbin', '/usr/local/etc/rc.d' ],
     hasstatus => true,
     require   => Package['squid3_package'],
   }
@@ -62,4 +62,3 @@ class squid3 (
   }
 
 }
-

@@ -1,3 +1,5 @@
+* Add FreeBSD support (#11, @misullivan).
+
 #### 2014-07-15 - 0.2.3
 * Add refresh_patterns config option (#7, @adamgraves85).
 
