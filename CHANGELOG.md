@@ -1,3 +1,4 @@
+#### 2015-11-16 - 1.0.0
 * Add FreeBSD support (#11, @misullivan).
 * Add version parameter to set squid package version (#12, @actionjack).
 * Add use_deprecated_opts parameter (#13, @actionjack).
