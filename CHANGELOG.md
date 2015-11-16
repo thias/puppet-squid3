@@ -1,4 +1,13 @@
 * Add FreeBSD support (#11, @misullivan).
+* Add version parameter to set squid package version (#12, @actionjack).
+* Add use_deprecated_opts parameter (#13, @actionjack).
+* Add https_port parameter (@actionjack).
+* Fix Ubuntu upstart error (#14, @actionjack).
+* Fix coredump_dir not using variable in short template (#18, @wunzeco).
+* Add puppetlabs-stdlib requirement, as empty() is used (#21, @cliffano).
+* Fix operatingsystem comparison for RHEL < 6 (#27, @pecastro).
+* Add ssl_ports and safe_ports array parameters (#30, @tinnightcap).
+* Add validate_cmd for the configuration file (#31, @tinnightcap).
 
 #### 2014-07-15 - 0.2.3
 * Add refresh_patterns config option (#7, @adamgraves85).
