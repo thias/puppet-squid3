@@ -22,7 +22,8 @@ class squid3 (
   $server_persistent_connections = 'on',
   $maximum_object_size           = '4096 KB',
   $maximum_object_size_in_memory = '512 KB',
-  $config_hash                   = {},
+  $config_array                  = false,
+  $config_hash                   = false,
   $refresh_patterns              = [],
   $template                      = 'long',
   $package_version               = 'installed',
@@ -38,8 +39,12 @@ class squid3 (
     default => $template,
   }
 
-  if ! empty($config_hash) and $use_template == 'long' {
-    fail('$config_hash does not (yet) work with the "long" template!')
+  if ($config_array or $config_hash) and $use_template == 'long' {
+    fail('config_array and config_hash do not (yet) work with the "long" template!')
+  }
+
+  if $config_array and $config_hash {
+    fail('only one of config_array or config_hash can be used')
   }
 
   package { 'squid3_package':
