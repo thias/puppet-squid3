@@ -11,6 +11,7 @@ class squid3 (
   $http_access                   = [],
   $icp_access                    = [],
   $tcp_outgoing_address          = [],
+  $cache_peer                    = [],
   $cache_mem                     = '256 MB',
   $cache_dir                     = [],
   $cache                         = [],
@@ -22,6 +23,8 @@ class squid3 (
   $server_persistent_connections = 'on',
   $maximum_object_size           = '4096 KB',
   $maximum_object_size_in_memory = '512 KB',
+  $memory_replacement_policy     = undef,
+  $cache_replacement_policy      = undef,
   $config_hash                   = {},
   $refresh_patterns              = [],
   $template                      = 'long',
@@ -31,6 +34,9 @@ class squid3 (
   $service_enable                = $::squid3::params::service_enable,
   $service_name                  = $::squid3::params::service_name,
 ) inherits ::squid3::params {
+  validate_re($cache_replacement_policy, '^(lru|heap GDSF|heap LFUDA|heap LRU)$')
+  validate_re($memory_replacement_policy, '^(lru|heap GDSF|heap LFUDA|heap LRU)$')
+  validate_array($cache_peer)
 
   $use_template = $template ? {
     'short' => 'squid3/squid.conf.short.erb',

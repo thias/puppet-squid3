@@ -63,6 +63,10 @@ https_port <%= line %>
 tcp_outgoing_address <%= line %>
 <% end -%>
 
+<% @cache_peer.each do |line| -%>
+cache_peer <%= line %>
+<% end -%>
+
 # user-defined cache-dirs
 <% @cache_dir.each do |line| -%>
 cache_dir <%= line %>
@@ -73,6 +77,8 @@ cache_dir <%= line %>
 hierarchy_stoplist             cgi-bin ?
 coredump_dir                   <%= @coredump_dir %>
 maximum_object_size_in_memory  <%= @maximum_object_size_in_memory  %>
+memory_replacement_policy      <%= @memory_replacement_policy      %>
+cache_replacement_policy       <%= @cache_replacement_policy       %>
 maximum_object_size            <%= @maximum_object_size            %>
 ignore_expect_100              <%= @ignore_expect_100              %>
 cache_mgr                      <%= @cache_mgr                      %>

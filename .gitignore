@@ -1,2 +1,5 @@
 .idea
 Gemfile.lock
+
+#Geppetto files
+.project

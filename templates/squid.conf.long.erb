@@ -1796,6 +1796,9 @@ tcp_outgoing_address <%= line %>
 #	
 #Default:
 # none
+<% @cache_peer.each do |line| -%>
+cache_peer <%= line %>
+<% end -%>
 
 #  TAG: cache_peer_domain
 #	Use to limit the domains for which a neighbor cache will be
@@ -1947,6 +1950,9 @@ maximum_object_size_in_memory <%= @maximum_object_size_in_memory %>
 #	See cache_replacement_policy for details.
 #Default:
 # memory_replacement_policy lru
+<% if @memory_replacement_policy -%>
+memory_replacement_policy <%= @memory_replacement_policy %>
+<% end -%>
 
 # DISK CACHE OPTIONS
 # -----------------------------------------------------------------------------
@@ -1987,6 +1993,9 @@ maximum_object_size_in_memory <%= @maximum_object_size_in_memory %>
 #	and http://fog.hpl.external.hp.com/techreports/98/HPL-98-173.html.
 #Default:
 # cache_replacement_policy lru
+<% if @cache_replacement_policy -%>
+cache_replacement_policy <%= @cache_replacement_policy %>
+<% end -%>
 
 #  TAG: cache_dir
 #	Usage:
