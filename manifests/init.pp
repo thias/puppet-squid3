@@ -34,8 +34,12 @@ class squid3 (
   $service_enable                = $::squid3::params::service_enable,
   $service_name                  = $::squid3::params::service_name,
 ) inherits ::squid3::params {
-  validate_re($cache_replacement_policy, '^(lru|heap GDSF|heap LFUDA|heap LRU)$')
-  validate_re($memory_replacement_policy, '^(lru|heap GDSF|heap LFUDA|heap LRU)$')
+  if $cache_replacement_policy != undef {
+    validate_re($cache_replacement_policy, '^(lru|heap GDSF|heap LFUDA|heap LRU)$')
+  }
+  if $memory_replacement_policy != undef {
+    validate_re($memory_replacement_policy, '^(lru|heap GDSF|heap LFUDA|heap LRU)$')
+  }
   validate_array($cache_peer)
 
   $use_template = $template ? {
