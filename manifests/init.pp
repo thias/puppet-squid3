@@ -41,6 +41,7 @@ class squid3 (
     validate_re($memory_replacement_policy, '^(lru|heap GDSF|heap LFUDA|heap LRU)$')
   }
   validate_array($cache_peer)
+  validate_array($refresh_patterns)
 
   $use_template = $template ? {
     'short' => 'squid3/squid.conf.short.erb',
