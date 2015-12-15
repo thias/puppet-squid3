@@ -70,20 +70,20 @@ tcp_outgoing_address <%= line %>
 cache_dir <%= line %>
 <% end -%>
 
-<% if @cache_peer -%>
+<% if !@cache_peer.empty? -%>
 # user-defined cache_peer
 <% @cache_peer.each do |line| -%>
 cache_peer <%= line %>
 <% end -%>
-<% end -%>
 
-<% if @cache_peer_access -%>
+<% end -%>
+<% if !@cache_peer_access.empty? -%>
 # user-defined cache_peer_access
 <% @cache_peer_access.each do |line| -%>
 cache_peer_access <%= line %>
 <% end -%>
-<% end -%>
 
+<% end -%>
 # general settings
 hierarchy_stoplist             cgi-bin ?
 coredump_dir                   <%= @coredump_dir %>
@@ -116,20 +116,20 @@ refresh_pattern                ^gopher:           1440     0%     1440
 refresh_pattern                -i (/cgi-bin/|\?)     0     0%        0
 refresh_pattern                .                     0    20%     4320
 
-<% if @always_direct -%>
+<% if !@always_direct.empty? -%>
 # user-defined always_direct
 <% @always_direct.each do |line| -%> 
 always_direct <%= line %>
 <% end -%>
-<% end -%>
 
-<% if @never_direct -%>
+<% end -%>
+<% if !@never_direct.empty? -%>
 # user-defined never_direct
 <% @never_direct.each do |line| -%> 
 never_direct <%= line %>
 <% end -%>
-<% end -%>
 
+<% end -%>
 # user-defined configuration settings from config_hash
 <% @config_hash.sort_by {|k,v| k}.each do |k,v| -%>
 <%= "%*s"%[-30,k] %> <%= v %>

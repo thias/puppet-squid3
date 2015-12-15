@@ -1798,7 +1798,7 @@ tcp_outgoing_address <%= line %>
 #	
 #Default:
 # none
-<% if @cache_peer -%>
+<% if !@cache_peer.empty? -%>
 # user-defined cache_peer
 <% @cache_peer.each do |line| -%>
 cache_peer <%= line %>
@@ -1845,7 +1845,7 @@ cache_peer <%= line %>
 #	the Squid FAQ (http://wiki.squid-cache.org/SquidFaq/SquidAcl).
 #Default:
 # none
-<% if @cache_peer_access -%>
+<% if !@cache_peer_access.empty? -%>
 # user-defined cache_peer_access
 <% @cache_peer_access.each do |line| -%>
 cache_peer_access <%= line %>
@@ -4594,7 +4594,7 @@ server_persistent_connections <%= @server_persistent_connections %>
 #	See http://wiki.squid-cache.org/SquidFaq/SquidAcl for details.
 #Default:
 # none
-<% if @always_direct -%>
+<% if !@always_direct.empty? -%>
 # user-defined always_direct
 <% @always_direct.each do |line| -%>
 always_direct <%= line %>
@@ -4629,7 +4629,7 @@ always_direct <%= line %>
 #	See http://wiki.squid-cache.org/SquidFaq/SquidAcl for details.
 #Default:
 # none
-<% if @never_direct -%>
+<% if !@never_direct.empty? -%>
 # user-defined never_direct
 <% @never_direct.each do |line| -%> 
 never_direct <%= line %>
