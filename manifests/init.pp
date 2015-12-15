@@ -31,6 +31,10 @@ class squid3 (
   $service_enable                = $::squid3::params::service_enable,
   $service_name                  = $::squid3::params::service_name,
   $allow_localnet                = true,
+  $cache_peer                    = [],
+  $cache_peer_access             = [],
+  $always_direct                 = [],
+  $never_direct                  = [],
 ) inherits ::squid3::params {
 
   $use_template = $template ? {

@@ -70,6 +70,19 @@ tcp_outgoing_address <%= line %>
 cache_dir <%= line %>
 <% end -%>
 
+<% if @cache_peer -%>
+# user-defined cache_peer
+<% @cache_peer.each do |line| -%>
+cache_peer <%= line %>
+<% end -%>
+<% end -%>
+
+<% if @cache_peer_access -%>
+# user-defined cache_peer_access
+<% @cache_peer_access.each do |line| -%>
+cache_peer_access <%= line %>
+<% end -%>
+<% end -%>
 
 # general settings
 hierarchy_stoplist             cgi-bin ?
@@ -103,6 +116,19 @@ refresh_pattern                ^gopher:           1440     0%     1440
 refresh_pattern                -i (/cgi-bin/|\?)     0     0%        0
 refresh_pattern                .                     0    20%     4320
 
+<% if @always_direct -%>
+# user-defined always_direct
+<% @always_direct.each do |line| -%> 
+always_direct <%= line %>
+<% end -%>
+<% end -%>
+
+<% if @never_direct -%>
+# user-defined never_direct
+<% @never_direct.each do |line| -%> 
+never_direct <%= line %>
+<% end -%>
+<% end -%>
 
 # user-defined configuration settings from config_hash
 <% @config_hash.sort_by {|k,v| k}.each do |k,v| -%>
