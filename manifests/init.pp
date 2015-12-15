@@ -30,6 +30,7 @@ class squid3 (
   $service_ensure                = 'running',
   $service_enable                = $::squid3::params::service_enable,
   $service_name                  = $::squid3::params::service_name,
+  $allow_localnet                = true,
 ) inherits ::squid3::params {
 
   $use_template = $template ? {
