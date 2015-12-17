@@ -139,4 +139,26 @@ describe 'squid3' do
       end
     end
 
+    context 'RedHat - disable allow localnet' do
+        let(:facts) { facts_hash }
+        let(:params){{
+          :template       => 'short',
+          :allow_localnet => false,
+        }}
+
+        it "config file should not contain \"http_access allow localnet\"" do
+          should_not contain_file('/etc/squid/squid.conf').with_content( /http_access +allow +localnet/ )
+        end
+    end
+
+    context 'RedHat - localnet should be allowed with default opts.' do
+        let(:facts) { facts_hash }
+        let(:params){{
+          :template       => 'short',
+        }}
+
+        it "config file should contain \"http_access allow localnet\"" do
+          should contain_file('/etc/squid/squid.conf').with_content( /http_access +allow +localnet/ )
+        end
+    end
 end

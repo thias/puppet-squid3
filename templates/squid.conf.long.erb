@@ -786,7 +786,9 @@ http_access <%= line %>
 # Example rule allowing access from your local networks.
 # Adapt localnet in the ACL section to list your (internal) IP networks
 # from where browsing should be allowed
+<% if @allow_localnet -%>
 http_access allow localnet
+<% end -%>
 http_access allow localhost
 
 # And finally deny all other access to this proxy
@@ -1796,6 +1798,12 @@ tcp_outgoing_address <%= line %>
 #	
 #Default:
 # none
+<% if !@cache_peer.empty? -%>
+# user-defined cache_peer
+<% @cache_peer.each do |line| -%>
+cache_peer <%= line %>
+<% end -%>
+<% end -%>
 
 #  TAG: cache_peer_domain
 #	Use to limit the domains for which a neighbor cache will be
@@ -1837,6 +1845,12 @@ tcp_outgoing_address <%= line %>
 #	the Squid FAQ (http://wiki.squid-cache.org/SquidFaq/SquidAcl).
 #Default:
 # none
+<% if !@cache_peer_access.empty? -%>
+# user-defined cache_peer_access
+<% @cache_peer_access.each do |line| -%>
+cache_peer_access <%= line %>
+<% end -%>
+<% end -%>
 
 #  TAG: neighbor_type_domain
 #	usage: neighbor_type_domain neighbor parent|sibling domain domain ...
@@ -4580,6 +4594,12 @@ server_persistent_connections <%= @server_persistent_connections %>
 #	See http://wiki.squid-cache.org/SquidFaq/SquidAcl for details.
 #Default:
 # none
+<% if !@always_direct.empty? -%>
+# user-defined always_direct
+<% @always_direct.each do |line| -%>
+always_direct <%= line %>
+<% end -%>
+<% end -%>
 
 #  TAG: never_direct
 #	Usage: never_direct allow|deny [!]aclname ...
@@ -4609,6 +4629,12 @@ server_persistent_connections <%= @server_persistent_connections %>
 #	See http://wiki.squid-cache.org/SquidFaq/SquidAcl for details.
 #Default:
 # none
+<% if !@never_direct.empty? -%>
+# user-defined never_direct
+<% @never_direct.each do |line| -%>
+never_direct <%= line %>
+<% end -%>
+<% end -%>
 
 # ADVANCED NETWORKING OPTIONS
 # -----------------------------------------------------------------------------
