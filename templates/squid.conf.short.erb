@@ -118,14 +118,14 @@ refresh_pattern                .                     0    20%     4320
 
 <% if !@always_direct.empty? -%>
 # user-defined always_direct
-<% @always_direct.each do |line| -%> 
+<% @always_direct.each do |line| -%>
 always_direct <%= line %>
 <% end -%>
 
 <% end -%>
 <% if !@never_direct.empty? -%>
 # user-defined never_direct
-<% @never_direct.each do |line| -%> 
+<% @never_direct.each do |line| -%>
 never_direct <%= line %>
 <% end -%>
 
