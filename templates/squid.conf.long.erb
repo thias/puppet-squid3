@@ -294,6 +294,10 @@
 ##auth_param basic credentialsttl 2 hours
 #Default:
 # none
+<% if @use_auth -%>
+<% @auth_options.keys.sort.each do |option| -%>
+auth_param <%= @auth_type -%> <%= option -%> <%= @auth_options[option] %>
+<% end -%>
 
 #  TAG: authenticate_cache_garbage_interval
 #	The time period between garbage collection across the username cache.
@@ -424,6 +428,10 @@
 #	The query channel tag is a number between 0 and concurrency-1.
 #Default:
 # none
+<% @auth_ext_acl.each do |eacl| -%>
+external_acl_type <%= eacl %>
+<% end -%>
+<% end -%>
 
 #  TAG: acl
 #	Defining an Access List
@@ -786,7 +794,9 @@ http_access <%= line %>
 # Example rule allowing access from your local networks.
 # Adapt localnet in the ACL section to list your (internal) IP networks
 # from where browsing should be allowed
+<% if @allow_localnet -%>
 http_access allow localnet
+<% end -%>
 http_access allow localhost
 
 # And finally deny all other access to this proxy
