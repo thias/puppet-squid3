@@ -1,6 +1,6 @@
 # Class: squid3::config
 #
-class ::squid3::config (
+class squid3::config (
 ) inherits ::squid3 {
   $use_template = $squid3::template ? {
     'short' => 'squid3/squid.conf.short.erb',
