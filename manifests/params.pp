@@ -45,4 +45,10 @@ class squid3::params {
   $cache_log       = "${log_directory}/cache.log"
   $cache_store_log = "${log_directory}/store.log"
 
+  $use_auth        = false
+  $auth_type       = ''
+  $auth_options    = []
+  $auth_ext_acl    = ''
+  $auth_acl        = []
+  $allow_localnet  = true
 }
