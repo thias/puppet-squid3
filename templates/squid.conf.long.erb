@@ -648,11 +648,13 @@ acl to_localhost dst 127.0.0.0/8 0.0.0.0/32 ::1
 # Example rule allowing access from your local networks.
 # Adapt to list your (internal) IP networks from where browsing
 # should be allowed
+<% if @use_default_localnet -%>
 acl localnet src 10.0.0.0/8	# RFC1918 possible internal network
 acl localnet src 172.16.0.0/12	# RFC1918 possible internal network
 acl localnet src 192.168.0.0/16	# RFC1918 possible internal network
 acl localnet src fc00::/7       # RFC 4193 local private network range
 acl localnet src fe80::/10      # RFC 4291 link-local (directly plugged) machines
+<% end -%>
 
 <% @ssl_ports.each do |line| -%>
 acl SSL_ports port <%= line %>
@@ -786,7 +788,9 @@ http_access <%= line %>
 # Example rule allowing access from your local networks.
 # Adapt localnet in the ACL section to list your (internal) IP networks
 # from where browsing should be allowed
+<% if @use_default_localnet -%>
 http_access allow localnet
+<% end -%>
 http_access allow localhost
 
 # And finally deny all other access to this proxy

@@ -3,6 +3,7 @@
 class squid3 (
   # Options are in the same order they appear in squid.conf
   $use_deprecated_opts           = true,
+  $use_default_localnet          = true,
   $http_port                     = [ '3128' ],
   $https_port                    = [],
   $acl                           = [],
