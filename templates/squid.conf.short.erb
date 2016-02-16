@@ -63,11 +63,6 @@ https_port <%= line %>
 tcp_outgoing_address <%= line %>
 <% end -%>
 
-# user-defined cache-dirs
-<% @cache_dir.each do |line| -%>
-cache_dir <%= line %>
-<% end -%>
-
 
 # general settings
 hierarchy_stoplist             cgi-bin ?
@@ -99,6 +94,11 @@ refresh_pattern                ^gopher:           1440     0%     1440
 refresh_pattern                -i (/cgi-bin/|\?)     0     0%        0
 refresh_pattern                .                     0    20%     4320
 
+
+# user-defined cache-dirs
+<% @cache_dir.each do |line| -%>
+cache_dir <%= line %>
+<% end -%>
 
 # user-defined configuration settings from config_hash
 <% @config_hash.sort_by {|k,v| k}.each do |k,v| -%>

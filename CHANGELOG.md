@@ -1,3 +1,5 @@
+* Fix cache_dir in short template, must be below maximum_object_size.
+
 #### 2015-11-16 - 1.0.0
 * Add FreeBSD support (#11, @misullivan).
 * Add version parameter to set squid package version (#12, @actionjack).
