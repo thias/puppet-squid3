@@ -104,3 +104,7 @@ cache_dir <%= line %>
 <% @config_hash.sort_by {|k,v| k}.each do |k,v| -%>
 <%= "%*s"%[-30,k] %> <%= v %>
 <% end -%>
+
+<% if @hosts_file -%>
+hosts_file <%= @hosts_file %>
+<% end -%>

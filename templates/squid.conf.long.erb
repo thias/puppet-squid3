@@ -5202,6 +5202,9 @@ server_persistent_connections <%= @server_persistent_connections %>
 #	definitions.
 #Default:
 # hosts_file /etc/hosts
+<% if @hosts_file -%>
+hosts_file <%= @hosts_file %>
+<% end -%>
 
 #  TAG: append_domain
 #	Appends local domain name to hostnames without any dots in
