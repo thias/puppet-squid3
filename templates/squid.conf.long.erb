@@ -3575,6 +3575,9 @@ cache_mgr <%= @cache_mgr %>
 #	names with this setting.
 #Default:
 # none
+<% if @visible_hostname != "" -%>
+visible_hostname <%= @visible_hostname %>
+<% end -%>
 
 #  TAG: unique_hostname
 #	If you want to have multiple machines with the same

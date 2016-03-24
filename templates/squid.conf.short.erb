@@ -71,6 +71,9 @@ maximum_object_size_in_memory  <%= @maximum_object_size_in_memory  %>
 maximum_object_size            <%= @maximum_object_size            %>
 ignore_expect_100              <%= @ignore_expect_100              %>
 cache_mgr                      <%= @cache_mgr                      %>
+<% if @visible_hostname != "" -%>
+visible_hostname               <%= @visible_hostname %>
+<% end -%>
 client_persistent_connections  <%= @client_persistent_connections  %>
 server_persistent_connections  <%= @server_persistent_connections  %>
 forwarded_for                  <%= @forwarded_for                  %>

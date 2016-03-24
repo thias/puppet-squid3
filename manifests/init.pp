@@ -22,6 +22,7 @@ class squid3 (
   $server_persistent_connections = 'on',
   $maximum_object_size           = '4096 KB',
   $maximum_object_size_in_memory = '512 KB',
+  $visible_hostname              = '',
   $config_hash                   = {},
   $refresh_patterns              = [],
   $template                      = 'long',
