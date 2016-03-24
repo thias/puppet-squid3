@@ -2290,6 +2290,9 @@ maximum_object_size <%= @maximum_object_size %>
 #logformat combined %>a %ui %un [%tl] "%rm %ru HTTP/%rv" %>Hs %<st "%{Referer}>h" "%{User-Agent}>h" %Ss:%Sh
 #Default:
 # none
+<% @logformat.each do |line| -%>
+logformat <%= line %>
+<% end -%>
 
 #  TAG: access_log
 #	These files log client request activities. Has a line every HTTP or
