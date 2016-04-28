@@ -1,6 +1,10 @@
 ## THIS FILE IS MANAGED BY PUPPET.
 ## DO NOT EDIT.
 
+<% if @append_domain_opt -%>
+append_domain <%= @append_domain %>
+<% end -%>
+
 # predefined ACLs
 <% if @use_deprecated_opts -%>
 acl manager proto cache_object

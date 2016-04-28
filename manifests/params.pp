@@ -41,6 +41,12 @@ class squid3::params {
     }
   }
 
+  $append_domain_opt = "false"
+
+  if $append_domain_opt == 'true' {
+    $config_append_domain = $append_domain
+  }
+
   $access_log      = [ "${log_directory}/access.log squid" ]
   $cache_log       = "${log_directory}/cache.log"
   $cache_store_log = "${log_directory}/store.log"

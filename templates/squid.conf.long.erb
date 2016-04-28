@@ -5213,6 +5213,9 @@ server_persistent_connections <%= @server_persistent_connections %>
 #
 #Example:
 # append_domain .yourdomain.com
+<% if @append_domain_opt -%>
+append_domain <%= @append_domain %>
+<% end -%>
 #Default:
 # none
 
