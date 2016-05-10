@@ -758,9 +758,11 @@ acl CONNECT method CONNECT
 #
 # Recommended minimum Access Permission configuration:
 #
+<% if @use_deprecated_opts -%>
 # Only allow cachemgr access from localhost
 http_access allow manager localhost
 http_access deny manager
+<% end -%>
 
 # Deny requests to certain unsafe ports
 http_access deny !Safe_ports
