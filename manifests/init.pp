@@ -14,6 +14,8 @@ class squid3 (
   $cache_mem                     = '256 MB',
   $cache_dir                     = [],
   $cache                         = [],
+  $cache_peer                    = [],
+  $cache_peer_access             = [],
   $via                           = 'on',
   $ignore_expect_100             = 'off',
   $cache_mgr                     = 'root',

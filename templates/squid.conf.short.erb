@@ -58,6 +58,20 @@ https_port <%= line %>
 <% end -%>
 <% end -%>
 
+<% if @cache_peer -%>
+# user-defined cache_peer
+<% @cache_peer.each do |line| -%>
+cache_peer <%= line %>
+<% end -%>
+<% end -%>
+
+<% if @cache_peer_access -%>
+# user-defined cache_peer_access
+<% @cache_peer_access.each do |line| -%>
+cache_peer_access <%= line %>
+<% end -%>
+<% end -%>
+
 # user-defined tcp_outgoing_addresses
 <% @tcp_outgoing_address.each do |line| -%>
 tcp_outgoing_address <%= line %>

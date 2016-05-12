@@ -1189,6 +1189,20 @@ https_port <%= line %>
 <% end -%>
 <% end -%>
 
+<% if @cache_peer -%>
+# user-defined cache_peer
+<% @cache_peer.each do |line| -%>
+cache_peer <%= line %>
+<% end -%>
+<% end -%>
+
+<% if @cache_peer_access -%>
+# user-defined cache_peer_access
+<% @cache_peer_access.each do |line| -%>
+cache_peer_access <%= line %>
+<% end -%>
+<% end -%>
+
 #  TAG: tcp_outgoing_tos
 #	Allows you to select a TOS/Diffserv value to mark outgoing
 #	connections with, based on the username or source address
