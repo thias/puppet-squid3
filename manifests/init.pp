@@ -10,6 +10,7 @@ class squid3 (
   $safe_ports                    = [ '80', '21', '443', '70', '210', '1025-65535', '280', '488', '591', '777', ],
   $http_access                   = [],
   $icp_access                    = [],
+  $icp_port                      = [],
   $tcp_outgoing_address          = [],
   $cache_mem                     = '256 MB',
   $cache_dir                     = [],

@@ -44,6 +44,13 @@ http_access deny all
 icp_access <%= line %>
 <% end -%>
 
+<% if @icp_port -%>
+# user-defined icp_port
+<% @icp_port.each do |line| -%>
+icp_port <%= line %>
+<% end -%>
+<% end -%>
+
 <% if @http_port -%>
 # user-defined http_port
 <% @http_port.each do |line| -%>

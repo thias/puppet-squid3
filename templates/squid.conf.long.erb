@@ -4149,6 +4149,12 @@ server_persistent_connections <%= @server_persistent_connections %>
 #		icp_port 3130
 #Default:
 # icp_port 0
+<% if @icp_port -%>
+# user-defined icp_port
+<% @icp_port.each do |line| -%>
+icp_port <%= line %>
+<% end -%>
+<% end -%>
 
 #  TAG: htcp_port
 #	The port number where Squid sends and receives HTCP queries to
