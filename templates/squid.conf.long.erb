@@ -641,9 +641,9 @@
 #
 <% if @use_deprecated_opts -%>
 acl manager proto cache_object
+<% end -%>
 acl localhost src 127.0.0.1/32 ::1
 acl to_localhost dst 127.0.0.0/8 0.0.0.0/32 ::1
-<% end -%>
 
 # Example rule allowing access from your local networks.
 # Adapt to list your (internal) IP networks from where browsing
@@ -758,9 +758,11 @@ acl CONNECT method CONNECT
 #
 # Recommended minimum Access Permission configuration:
 #
+<% if @use_deprecated_opts -%>
 # Only allow cachemgr access from localhost
 http_access allow manager localhost
 http_access deny manager
+<% end -%>
 
 # Deny requests to certain unsafe ports
 http_access deny !Safe_ports
@@ -2290,6 +2292,9 @@ maximum_object_size <%= @maximum_object_size %>
 #logformat combined %>a %ui %un [%tl] "%rm %ru HTTP/%rv" %>Hs %<st "%{Referer}>h" "%{User-Agent}>h" %Ss:%Sh
 #Default:
 # none
+<% @logformat.each do |line| -%>
+logformat <%= line %>
+<% end -%>
 
 #  TAG: access_log
 #	These files log client request activities. Has a line every HTTP or
@@ -3575,6 +3580,9 @@ cache_mgr <%= @cache_mgr %>
 #	names with this setting.
 #Default:
 # none
+<% if @visible_hostname != "" -%>
+visible_hostname <%= @visible_hostname %>
+<% end -%>
 
 #  TAG: unique_hostname
 #	If you want to have multiple machines with the same

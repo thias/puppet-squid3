@@ -4,9 +4,9 @@
 # predefined ACLs
 <% if @use_deprecated_opts -%>
 acl manager proto cache_object
+<% end -%>
 acl localhost src 127.0.0.1/32 ::1
 acl to_localhost dst 127.0.0.0/8 0.0.0.0/32 ::1
-<% end -%>
 acl localnet src 10.0.0.0/8	# RFC1918 possible internal network
 acl localnet src 172.16.0.0/12	# RFC1918 possible internal network
 acl localnet src 192.168.0.0/16	# RFC1918 possible internal network
@@ -21,8 +21,10 @@ acl Safe_ports port <%= line %>
 acl CONNECT method CONNECT
 
 # predefined http_accesses
+<% if @use_deprecated_opts -%>
 http_access allow manager localhost
 http_access deny manager
+<% end -%>
 http_access deny !Safe_ports
 http_access deny CONNECT !SSL_ports
 
@@ -69,8 +71,14 @@ hierarchy_stoplist             cgi-bin ?
 coredump_dir                   <%= @coredump_dir %>
 maximum_object_size_in_memory  <%= @maximum_object_size_in_memory  %>
 maximum_object_size            <%= @maximum_object_size            %>
+<% @logformat.each do |line| -%>
+logformat <%= line %>
+<% end -%>
 ignore_expect_100              <%= @ignore_expect_100              %>
 cache_mgr                      <%= @cache_mgr                      %>
+<% if @visible_hostname != "" -%>
+visible_hostname               <%= @visible_hostname %>
+<% end -%>
 client_persistent_connections  <%= @client_persistent_connections  %>
 server_persistent_connections  <%= @server_persistent_connections  %>
 forwarded_for                  <%= @forwarded_for                  %>
