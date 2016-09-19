@@ -16,12 +16,24 @@ class squid3::params {
       $coredump_dir   = '/var/spool/squid'
     }
     'Debian', 'Ubuntu': {
-      $package_name   = 'squid3'
-      $service_name   = 'squid3'
-      $service_enable = false
-      $config_file    = '/etc/squid3/squid.conf'
-      $log_directory  = '/var/log/squid3'
-      $coredump_dir   = '/var/spool/squid3'
+      case $::operatingsystemmajrelease {
+        '16.04': {
+          $package_name   = 'squid'
+          $service_name   = 'squid'
+          $service_enable = false
+          $config_file    = '/etc/squid/squid.conf'
+          $log_directory  = '/var/log/squid'
+          $coredump_dir   = '/var/spool/squid'
+        }
+        default: {
+          $package_name   = 'squid3'
+          $service_name   = 'squid3'
+          $service_enable = false
+          $config_file    = '/etc/squid3/squid.conf'
+          $log_directory  = '/var/log/squid3'
+          $coredump_dir   = '/var/spool/squid3'
+        }
+      }
     }
     'FreeBSD': {
       $package_name   = 'squid'
