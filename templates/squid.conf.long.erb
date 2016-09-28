@@ -2567,6 +2567,9 @@ cache_store_log <%= @cache_store_log %>
 #	logging.  This protects your user's privacy.
 #Default:
 # strip_query_terms on
+<% if @strip_query_terms -%>
+strip_query_terms <%= @strip_query_terms %>
+<% end -%>
 
 #  TAG: buffered_logs	on|off
 #	cache.log log file is written with stdio functions, and as such
@@ -3358,6 +3361,11 @@ via <%= @via %>
 #	performed).
 #Default:
 # none
+<% if @reply_header_access -%>
+<% @reply_header_access.each do |header_access| -%>
+reply_header_access <%= header_access %>
+<% end -%>
+<% end -%>
 
 #  TAG: header_replace
 #	Usage:   header_replace header_name message
@@ -3485,7 +3493,11 @@ ignore_expect_100 <%= @ignore_expect_100 %>
 #	Timeout for idle persistent connections to servers and other
 #	proxies.
 #Default:
+<% if @pconn_timeout -%>
+pconn_timeout <%= @pconn_timeout %>
+<% else -%>
 # pconn_timeout 1 minute
+<% end -%>
 
 #  TAG: ident_timeout
 #	Maximum time to wait for IDENT lookups to complete.

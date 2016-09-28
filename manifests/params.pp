@@ -41,8 +41,8 @@ class squid3::params {
     }
   }
 
-  $access_log      = [ "${log_directory}/access.log squid" ]
+  $access_log      = [ "stdio:${log_directory}/access.log squid" ]
   $cache_log       = "${log_directory}/cache.log"
-  $cache_store_log = "${log_directory}/store.log"
+  $cache_store_log = "stdio:${log_directory}/store.log"
 
 }

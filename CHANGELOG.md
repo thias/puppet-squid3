@@ -1,4 +1,5 @@
 * Fix cache_dir in short template, must be below maximum_object_size.
+* Add a few parameters, make sure *log ones from params can be overridden.
 
 #### 2015-11-16 - 1.0.0
 * Add FreeBSD support (#11, @misullivan).

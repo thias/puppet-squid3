@@ -15,7 +15,9 @@ class squid3 (
   $cache_dir                     = [],
   $cache                         = [],
   $via                           = 'on',
+  $reply_header_access           = [],
   $ignore_expect_100             = 'off',
+  $pconn_timeout                 = undef,
   $cache_mgr                     = 'root',
   $forwarded_for                 = 'on',
   $client_persistent_connections = 'on',
@@ -30,6 +32,10 @@ class squid3 (
   $service_ensure                = 'running',
   $service_enable                = $::squid3::params::service_enable,
   $service_name                  = $::squid3::params::service_name,
+  $access_log                    = $::squid3::params::access_log,
+  $cache_log                     = $::squid3::params::cache_log,
+  $cache_store_log               = $::squid3::params::cache_store_log,
+  $strip_query_terms             = undef,
 ) inherits ::squid3::params {
 
   $use_template = $template ? {
