@@ -7,11 +7,13 @@ acl manager proto cache_object
 acl localhost src 127.0.0.1/32 ::1
 acl to_localhost dst 127.0.0.0/8 0.0.0.0/32 ::1
 <% end -%>
+<% if @use_default_localnet -%>
 acl localnet src 10.0.0.0/8	# RFC1918 possible internal network
 acl localnet src 172.16.0.0/12	# RFC1918 possible internal network
 acl localnet src 192.168.0.0/16	# RFC1918 possible internal network
 acl localnet src fc00::/7       # RFC 4193 local private network range
 acl localnet src fe80::/10      # RFC 4291 link-local (directly plugged) machines
+<% end -%>
 <% @ssl_ports.each do |line| -%>
 acl SSL_ports port <%= line %>
 <% end -%>
@@ -35,7 +37,9 @@ acl <%= line %>
 <% @http_access.each do |line| -%>
 http_access <%= line %>
 <% end -%>
+<% if @use_default_localnet -%>
 http_access allow localnet
+<% end -%>
 http_access allow localhost
 http_access deny all
 
