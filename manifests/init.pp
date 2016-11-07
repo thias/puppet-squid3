@@ -73,15 +73,14 @@ class squid3 (
   }
 
   case $::osfamily {
-    'FreeBSD': { $cmdpath = "/usr/local/sbin" }
-    default: { $cmdpath = "/usr/sbin" }
+    'FreeBSD': { $cmdpath = '/usr/local/sbin' }
+    default: { $cmdpath = '/usr/sbin' }
   }
 
-  file { $config_file:
+  file { $::squid3::config_file:
     require      => Package['squid3_package'],
     notify       => Service['squid3_service'],
     content      => template($use_template),
     validate_cmd => "${cmdpath}/${service_name} -k parse -f %",
   }
-
 }
