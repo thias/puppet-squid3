@@ -48,6 +48,13 @@ http_access deny all
 icp_access <%= line %>
 <% end -%>
 
+<% if @icp_port -%>
+# user-defined icp_port
+<% @icp_port.each do |line| -%>
+icp_port <%= line %>
+<% end -%>
+<% end -%>
+
 <% if @http_port -%>
 # user-defined http_port
 <% @http_port.each do |line| -%>
@@ -59,6 +66,20 @@ http_port <%= line %>
 # user-defined https_port
 <% @https_port.each do |line| -%>
 https_port <%= line %>
+<% end -%>
+<% end -%>
+
+<% if @cache_peer -%>
+# user-defined cache_peer
+<% @cache_peer.each do |line| -%>
+cache_peer <%= line %>
+<% end -%>
+<% end -%>
+
+<% if @cache_peer_access -%>
+# user-defined cache_peer_access
+<% @cache_peer_access.each do |line| -%>
+cache_peer_access <%= line %>
 <% end -%>
 <% end -%>
 

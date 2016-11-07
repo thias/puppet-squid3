@@ -1193,6 +1193,20 @@ https_port <%= line %>
 <% end -%>
 <% end -%>
 
+<% if @cache_peer -%>
+# user-defined cache_peer
+<% @cache_peer.each do |line| -%>
+cache_peer <%= line %>
+<% end -%>
+<% end -%>
+
+<% if @cache_peer_access -%>
+# user-defined cache_peer_access
+<% @cache_peer_access.each do |line| -%>
+cache_peer_access <%= line %>
+<% end -%>
+<% end -%>
+
 #  TAG: tcp_outgoing_tos
 #	Allows you to select a TOS/Diffserv value to mark outgoing
 #	connections with, based on the username or source address
@@ -4151,6 +4165,12 @@ server_persistent_connections <%= @server_persistent_connections %>
 #		icp_port 3130
 #Default:
 # icp_port 0
+<% if @icp_port -%>
+# user-defined icp_port
+<% @icp_port.each do |line| -%>
+icp_port <%= line %>
+<% end -%>
+<% end -%>
 
 #  TAG: htcp_port
 #	The port number where Squid sends and receives HTCP queries to

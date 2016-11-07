@@ -11,10 +11,13 @@ class squid3 (
   $safe_ports                    = [ '80', '21', '443', '70', '210', '1025-65535', '280', '488', '591', '777', ],
   $http_access                   = [],
   $icp_access                    = [],
+  $icp_port                      = [],
   $tcp_outgoing_address          = [],
   $cache_mem                     = '256 MB',
   $cache_dir                     = [],
   $cache                         = [],
+  $cache_peer                    = [],
+  $cache_peer_access             = [],
   $via                           = 'on',
   $reply_header_access           = [],
   $ignore_expect_100             = 'off',
@@ -70,15 +73,14 @@ class squid3 (
   }
 
   case $::osfamily {
-    'FreeBSD': { $cmdpath = "/usr/local/sbin" }
-    default: { $cmdpath = "/usr/sbin" }
+    'FreeBSD': { $cmdpath = '/usr/local/sbin' }
+    default: { $cmdpath = '/usr/sbin' }
   }
 
-  file { $config_file:
+  file { $::squid3::config_file:
     require      => Package['squid3_package'],
     notify       => Service['squid3_service'],
     content      => template($use_template),
     validate_cmd => "${cmdpath}/${service_name} -k parse -f %",
   }
-
 }
