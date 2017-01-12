@@ -44,8 +44,8 @@ class squid3 (
 ) inherits ::squid3::params {
 
   $use_template = $template ? {
-    'short' => 'squid3/squid.conf.short.erb',
-    'long'  => 'squid3/squid.conf.long.erb',
+    'short' => template('squid3/squid.conf.short.erb'),
+    'long'  => template('squid3/squid.conf.long.erb'),
     default => $template,
   }
 
@@ -80,7 +80,7 @@ class squid3 (
   file { $config_file:
     require      => Package['squid3_package'],
     notify       => Service['squid3_service'],
-    content      => template($use_template),
+    content      => $use_template,
     validate_cmd => "${cmdpath}/${service_name} -k parse -f %",
   }
 
