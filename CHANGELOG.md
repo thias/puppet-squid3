@@ -1,3 +1,4 @@
+* Migrate obsolete hierarchy_stoplist directive
 * Enable template parameter as source or content
 * Sort params
 
