@@ -1,3 +1,7 @@
+* Remove obsolete hierarchy_stoplist directive
+* Enable template parameter as source or content
+* Sort params
+
 #### 2016-09-28 - 1.0.1
 * Fix cache_dir in short template, must be below maximum_object_size.
 * Add a few parameters, make sure log ones from params can be overridden.
