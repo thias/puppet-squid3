@@ -1869,10 +1869,13 @@ http_port 3128
 #	to not query neighbor caches for certain objects.  You may
 #	list this option multiple times.
 #	Note: never_direct overrides this option.
-#
-
 # We recommend you to use at least the following line.
-hierarchy_stoplist cgi-bin ?
+# hierarchy_stoplist cgi-bin ?
+# WARNING: This directive has been deprecated since version 3.5
+# The functionality provided can be configured using always_direct
+# allow if still needed.
+# acl migrated_hs_0_0 url_regex cgi\-bin \?
+# always_direct allow migrated_hs_0_0
 
 # MEMORY CACHE OPTIONS
 # -----------------------------------------------------------------------------
