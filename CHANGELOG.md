@@ -1,3 +1,6 @@
+#### 2017-02-02 - 1.0.2
+* Remove hierarchy_stoplist, obsolete and (almost) never used/relevant.
+
 #### 2016-09-28 - 1.0.1
 * Fix cache_dir in short template, must be below maximum_object_size.
 * Add a few parameters, make sure log ones from params can be overridden.
