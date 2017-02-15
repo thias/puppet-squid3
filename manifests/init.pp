@@ -27,6 +27,8 @@ class squid3 (
   $maximum_object_size_in_memory = '512 KB',
   $config_array                  = false,
   $config_hash                   = false,
+  $config_content                = undef,
+  $config_source                 = undef,
   $refresh_patterns              = [],
   $template                      = 'long',
   $package_version               = 'installed',
@@ -46,12 +48,21 @@ class squid3 (
     default => $template,
   }
 
-  if ($config_array or $config_hash) and $use_template == 'long' {
-    fail('config_array and config_hash do not (yet) work with the "long" template!')
-  }
-
-  if $config_array and $config_hash {
-    fail('only one of config_array or config_hash can be used')
+  if $config_content {
+    $squid_conf_content = $config_content
+    $squid_conf_source = undef
+  } elsif $config_source {
+    $squid_conf_content = undef
+    $squid_conf_source = $config_source
+  } else {
+    if ($config_array or $config_hash) and $use_template == 'long' {
+      fail('config_array and config_hash do not (yet) work with the "long" template!')
+    }
+    if $config_array and $config_hash {
+      fail('only one of config_array or config_hash can be used')
+    }
+    $squid_conf_content = template($use_template)
+    $squid_conf_source = undef
   }
 
   package { 'squid3_package':
@@ -77,7 +88,8 @@ class squid3 (
   file { $config_file:
     require      => Package['squid3_package'],
     notify       => Service['squid3_service'],
-    content      => template($use_template),
+    content      => $squid_conf_content,
+    source       => $squid_conf_source,
     validate_cmd => "${cmdpath}/${service_name} -k parse -f %",
   }
 

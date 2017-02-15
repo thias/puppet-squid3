@@ -1,3 +1,5 @@
+* Add config_source and config_content parameters.
+
 #### 2017-02-02 - 1.0.2
 * Remove hierarchy_stoplist, obsolete and (almost) never used/relevant.
 
