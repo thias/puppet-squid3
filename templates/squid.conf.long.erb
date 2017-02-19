@@ -4088,6 +4088,9 @@ server_persistent_connections <%= @server_persistent_connections %>
 #		snmp_port 3401
 #Default:
 # snmp_port 0
+<% @snmp_port.each do |line| -%>
+snmp_port <%= line %>
+<% end -%>
 
 #  TAG: snmp_access
 #	Allowing or denying access to the SNMP port.
@@ -4103,7 +4106,10 @@ server_persistent_connections <%= @server_persistent_connections %>
 # snmp_access allow snmppublic localhost
 # snmp_access deny all
 #Default:
-# snmp_access deny all
+<% @snmp_access.each do |line| -%>
+snmp_access <%= line %>
+<% end -%>
+snmp_access deny all
 
 #  TAG: snmp_incoming_address
 #  TAG: snmp_outgoing_address

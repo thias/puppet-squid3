@@ -43,6 +43,12 @@ http_access allow localnet
 http_access allow localhost
 http_access deny all
 
+# user-defined snmp_accesses
+<% @snmp_access.each do |line| -%>
+snmp_access <%= line %>
+<% end -%>
+snmp_access deny all
+
 # user-defined icp_access
 <% @icp_access.each do |line| -%>
 icp_access <%= line %>
@@ -52,6 +58,13 @@ icp_access <%= line %>
 # user-defined http_port
 <% @http_port.each do |line| -%>
 http_port <%= line %>
+<% end -%>
+<% end -%>
+
+<% if @snmp_port -%>
+# user-defined snmp_port
+<% @snmp_port.each do |line| -%>
+snmp_port <%= line %>
 <% end -%>
 <% end -%>
 
