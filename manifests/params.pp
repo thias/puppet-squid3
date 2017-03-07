@@ -16,7 +16,8 @@ class squid3::params {
       $coredump_dir   = '/var/spool/squid'
     }
     'Debian': {
-      if $::operatingsystem == 'Ubuntu' and versioncmp($::operatingsystemrelease,'16.04') >= 0 {
+      if $::operatingsystem == 'Ubuntu' and versioncmp($::operatingsystemrelease,'16.04') >= 0 or
+        $::operatingsystem == 'Debian' and versioncmp($::operatingsystemrelease, '9.0') >= 0 {
         $package_name   = 'squid'
         $service_name   = 'squid'
         $service_enable = false
