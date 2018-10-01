@@ -8,7 +8,7 @@ class squid3 (
   $acl                           = [],
   $ssl_ports                     = [ '443' ],
   $safe_ports                    = [ '80', '21', '443', '70', '210', '1025-65535', '280', '488', '591', '777', ],
-  $access_log                    = $access_log,
+  $access_log                    = $::squid3::params::access_log,
   $http_access                   = [],
   $icp_access                    = [],
   $tcp_outgoing_address          = [],
