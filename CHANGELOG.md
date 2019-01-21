@@ -1,3 +1,4 @@
+#### 2019-01-21 - 1.0.3
 * Add config_source and config_content parameters.
 
 #### 2017-02-02 - 1.0.2
