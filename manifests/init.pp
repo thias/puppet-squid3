@@ -58,9 +58,6 @@ class squid3 (
     if ($config_array or $config_hash) and $use_template == 'long' {
       fail('config_array and config_hash do not (yet) work with the "long" template!')
     }
-    if $config_array and $config_hash {
-      fail('only one of config_array or config_hash can be used')
-    }
     $squid_conf_content = template($use_template)
     $squid_conf_source = undef
   }
