@@ -14,6 +14,11 @@ acl localnet src 192.168.0.0/16	# RFC1918 possible internal network
 acl localnet src fc00::/7       # RFC 4193 local private network range
 acl localnet src fe80::/10      # RFC 4291 link-local (directly plugged) machines
 <% end -%>
+
+<% @auth_params.each do |line| -%>
+auth_param <%= line %>
+<% end -%>
+
 <% @ssl_ports.each do |line| -%>
 acl SSL_ports port <%= line %>
 <% end -%>
