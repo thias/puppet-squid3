@@ -294,6 +294,9 @@
 ##auth_param basic credentialsttl 2 hours
 #Default:
 # none
+<% @auth_params.each do |line| -%>
+auth_param <%= line %>
+<% end -%>
 
 #  TAG: authenticate_cache_garbage_interval
 #	The time period between garbage collection across the username cache.
