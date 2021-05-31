@@ -4,6 +4,18 @@
 auth_param <%= line %>
 <%  end -%>
 
+# user-defined configuration settings from config_hash_prepend
+<% if @config_hash_prepend -%>
+<% @config_hash_prepend.sort_by {|k,v| k}.each do |k,v| -%>
+<%= "%*s"%[-30,k] %> <%= v %>
+<% end -%>
+<% end -%>
+<% if @config_array_prepend -%>
+<% @config_array_prepend.each do |v| -%>
+<%= v %>
+<% end -%>
+<% end -%>
+
 # predefined ACLs
 <% if @use_deprecated_opts -%>
 acl manager proto cache_object

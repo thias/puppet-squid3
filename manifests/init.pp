@@ -26,7 +26,9 @@ class squid3 (
   $server_persistent_connections = 'on',
   $maximum_object_size           = '4096 KB',
   $maximum_object_size_in_memory = '512 KB',
+  $config_array_prepend          = false,
   $config_array                  = false,
+  $config_hash_prepend           = false,
   $config_hash                   = false,
   $config_content                = undef,
   $config_source                 = undef,
@@ -79,8 +81,8 @@ class squid3 (
   }
 
   case $::osfamily {
-    'FreeBSD': { $cmdpath = "/usr/local/sbin" }
-    default: { $cmdpath = "/usr/sbin" }
+    'FreeBSD': { $cmdpath = '/usr/local/sbin' }
+    default: { $cmdpath = '/usr/sbin' }
   }
 
   file { $config_file:
