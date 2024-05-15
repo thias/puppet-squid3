@@ -1,4 +1,19 @@
+#### 2019-01-23 - 1.0.4
+* Allow both config_hash and config_array (not much use, but works fine).
+
+#### 2019-01-21 - 1.0.3
+* Add config_source and config_content parameters.
+
+#### 2017-02-02 - 1.0.2
+* Remove hierarchy_stoplist, obsolete and (almost) never used/relevant.
+
+#### 2016-09-28 - 1.0.1
 * Fix cache_dir in short template, must be below maximum_object_size.
+* Add a few parameters, make sure log ones from params can be overridden.
+* Add config_array for order-sensitive config lines (#25, @GeoffWilliams).
+* Fix params for Ubuntu 16.04 rename from squid3 to squid (#47, @ianssoftcom).
+* Add option to remove localnet defaults (#40, @rwf14f).
+* Fix validate path to work on all operating systems (#39, @sethlyons).
 
 #### 2015-11-16 - 1.0.0
 * Add FreeBSD support (#11, @misullivan).

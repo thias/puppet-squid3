@@ -1863,17 +1863,6 @@ http_port 3128
 #Default:
 # forward_max_tries 10
 
-#  TAG: hierarchy_stoplist
-#	A list of words which, if found in a URL, cause the object to
-#	be handled directly by this cache.  In other words, use this
-#	to not query neighbor caches for certain objects.  You may
-#	list this option multiple times.
-#	Note: never_direct overrides this option.
-#
-
-# We recommend you to use at least the following line.
-hierarchy_stoplist cgi-bin ?
-
 # MEMORY CACHE OPTIONS
 # -----------------------------------------------------------------------------
 

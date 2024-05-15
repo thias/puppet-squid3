@@ -2,7 +2,9 @@
 #
 class squid3 (
   # Options are in the same order they appear in squid.conf
+  $auth_params                   = [],
   $use_deprecated_opts           = true,
+  $use_default_localnet          = true,
   $http_port                     = [ '3128' ],
   $https_port                    = [],
   $snmp_port                     = [],
@@ -17,14 +19,19 @@ class squid3 (
   $cache_dir                     = [],
   $cache                         = [],
   $via                           = 'on',
+  $reply_header_access           = [],
   $ignore_expect_100             = 'off',
+  $pconn_timeout                 = undef,
   $cache_mgr                     = 'root',
   $forwarded_for                 = 'on',
   $client_persistent_connections = 'on',
   $server_persistent_connections = 'on',
   $maximum_object_size           = '4096 KB',
   $maximum_object_size_in_memory = '512 KB',
-  $config_hash                   = {},
+  $config_array                  = false,
+  $config_hash                   = false,
+  $config_content                = undef,
+  $config_source                 = undef,
   $refresh_patterns              = [],
   $template                      = 'long',
   $package_version               = 'installed',
@@ -32,6 +39,10 @@ class squid3 (
   $service_ensure                = 'running',
   $service_enable                = $::squid3::params::service_enable,
   $service_name                  = $::squid3::params::service_name,
+  $access_log                    = $::squid3::params::access_log,
+  $cache_log                     = $::squid3::params::cache_log,
+  $cache_store_log               = $::squid3::params::cache_store_log,
+  $strip_query_terms             = undef,
 ) inherits ::squid3::params {
 
   $use_template = $template ? {
@@ -40,8 +51,18 @@ class squid3 (
     default => $template,
   }
 
-  if ! empty($config_hash) and $use_template == 'long' {
-    fail('$config_hash does not (yet) work with the "long" template!')
+  if $config_content {
+    $squid_conf_content = $config_content
+    $squid_conf_source = undef
+  } elsif $config_source {
+    $squid_conf_content = undef
+    $squid_conf_source = $config_source
+  } else {
+    if ($config_array or $config_hash) and $use_template == 'long' {
+      fail('config_array and config_hash do not (yet) work with the "long" template!')
+    }
+    $squid_conf_content = template($use_template)
+    $squid_conf_source = undef
   }
 
   package { 'squid3_package':
@@ -59,11 +80,17 @@ class squid3 (
     require   => Package['squid3_package'],
   }
 
+  case $::osfamily {
+    'FreeBSD': { $cmdpath = "/usr/local/sbin" }
+    default: { $cmdpath = "/usr/sbin" }
+  }
+
   file { $config_file:
     require      => Package['squid3_package'],
     notify       => Service['squid3_service'],
-    content      => template($use_template),
-    validate_cmd => "/usr/sbin/${service_name} -k parse -f %",
+    content      => $squid_conf_content,
+    source       => $squid_conf_source,
+    validate_cmd => "${cmdpath}/${service_name} -k parse -f %",
   }
 
 }
