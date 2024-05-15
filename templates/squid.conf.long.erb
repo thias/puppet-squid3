@@ -4109,6 +4109,7 @@ snmp_port <%= line %>
 # snmp_access allow snmppublic localhost
 # snmp_access deny all
 #Default:
+# snmp_access deny all
 <% @snmp_access.each do |line| -%>
 snmp_access <%= line %>
 <% end -%>
