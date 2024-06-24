@@ -3,14 +3,16 @@
 class squid3 (
   # Options are in the same order they appear in squid.conf
   $auth_params                   = [],
-  $use_deprecated_opts           = true,
+  $use_deprecated_opts           = false,
   $use_default_localnet          = true,
   $http_port                     = [ '3128' ],
   $https_port                    = [],
+  $snmp_port                     = [],
   $acl                           = [],
   $ssl_ports                     = [ '443' ],
   $safe_ports                    = [ '80', '21', '443', '70', '210', '1025-65535', '280', '488', '591', '777', ],
   $http_access                   = [],
+  $snmp_access                   = [],
   $icp_access                    = [],
   $tcp_outgoing_address          = [],
   $cache_mem                     = '256 MB',
