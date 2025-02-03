@@ -2,9 +2,9 @@
 #
 class squid3::params {
 
-  case $::osfamily {
+  case $facts['os']['family'] {
     'RedHat': {
-      if versioncmp($::operatingsystemrelease,'6') < 0 {
+      if versioncmp($facts['os']['release']['major'],'6') < 0 {
         $package_name = 'squid3'
       } else {
         $package_name = 'squid'
@@ -16,7 +16,7 @@ class squid3::params {
       $coredump_dir   = '/var/spool/squid'
     }
     'Debian': {
-      if $::operatingsystem == 'Ubuntu' and versioncmp($::operatingsystemrelease,'16.04') >= 0 {
+      if $facts['os']['name'] == 'Ubuntu' and versioncmp($facts['os']['release']['full'],'16.04') >= 0 {
         $package_name   = 'squid'
         $service_name   = 'squid'
         $service_enable = false

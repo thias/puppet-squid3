@@ -37,6 +37,7 @@ class squid3 (
   $service_ensure                = 'running',
   $service_enable                = $::squid3::params::service_enable,
   $service_name                  = $::squid3::params::service_name,
+  $config_file                   = $::squid3::params::config_file,
   $access_log                    = $::squid3::params::access_log,
   $cache_log                     = $::squid3::params::cache_log,
   $cache_store_log               = $::squid3::params::cache_store_log,
@@ -78,9 +79,9 @@ class squid3 (
     require   => Package['squid3_package'],
   }
 
-  case $::osfamily {
-    'FreeBSD': { $cmdpath = "/usr/local/sbin" }
-    default: { $cmdpath = "/usr/sbin" }
+  case $facts['os']['family'] {
+    'FreeBSD': { $cmdpath = '/usr/local/sbin' }
+    default: { $cmdpath = '/usr/sbin' }
   }
 
   file { $config_file:

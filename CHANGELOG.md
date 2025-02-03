@@ -1,3 +1,5 @@
+* Remove legacy facts usage.
+
 #### 2019-01-23 - 1.0.4
 * Allow both config_hash and config_array (not much use, but works fine).
 
